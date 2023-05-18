@@ -4,4 +4,15 @@
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
     </style>
+
+    <style name="PrimaryText">
+        <item name="android:textColor">@color/white</item>
+        <item name="fontFamily">@font/bentham</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Icons">
+        <item name="tint">@color/white</item>
+    </style>
+
 </resources>
