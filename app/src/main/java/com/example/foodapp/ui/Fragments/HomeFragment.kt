@@ -58,13 +58,13 @@ class HomeFragment : Fragment() {
         homeMvvm.getCategories()
         observeCategoryItems()
         prepareCategoryItemRecyclerView()
-        onCategoryItemclick()
+        onCategoryItemClick()
 
 
 
     }
 
-    private fun onCategoryItemclick() {
+    private fun onCategoryItemClick() {
         categoriesAdapter.onItemClick = {category ->
             val inToCategory = Intent(activity, CategoryMealsActivity::class.java)
             inToCategory.putExtra("Category_Name", category.strCategory)
