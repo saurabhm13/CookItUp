@@ -7,12 +7,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.example.foodapp.adapters.CategoryAdapter
 import com.example.foodapp.adapters.MostPopularAdapter
 import com.example.foodapp.data.MealsByCategory
 import com.example.foodapp.data.Meal
 import com.example.foodapp.databinding.FragmentHomeBinding
+import com.example.foodapp.ui.Activity.CategoryMealsActivity
 import com.example.foodapp.ui.Activity.MealActivity
 import com.example.foodapp.viewmodel.HomeViewModel
 
@@ -22,6 +25,7 @@ class HomeFragment : Fragment() {
     private lateinit var homeMvvm: HomeViewModel
     private lateinit var randomMeal: Meal
     private lateinit var popularItemAdapter: MostPopularAdapter
+    private lateinit var categoriesAdapter: CategoryAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,16 +48,42 @@ class HomeFragment : Fragment() {
 
         homeMvvm.getRandomMeal()
         observerRandomMeal()
-
         onRandomMealClick()
 
         homeMvvm.getPopularItems()
         observePopularItems()
-
         preparePopularItemRecyclerView()
-
         onPopularItemClick()
 
+        homeMvvm.getCategories()
+        observeCategoryItems()
+        prepareCategoryItemRecyclerView()
+        onCategoryItemclick()
+
+
+
+    }
+
+    private fun onCategoryItemclick() {
+        categoriesAdapter.onItemClick = {category ->
+            val inToCategory = Intent(activity, CategoryMealsActivity::class.java)
+            inToCategory.putExtra("Category_Name", category.strCategory)
+            startActivity(inToCategory)
+        }
+    }
+
+    private fun prepareCategoryItemRecyclerView() {
+        categoriesAdapter = CategoryAdapter()
+        binding.recViewCategories.apply {
+            layoutManager = GridLayoutManager(context, 3, GridLayoutManager.VERTICAL, false)
+            adapter = categoriesAdapter
+        }
+    }
+
+    private fun observeCategoryItems() {
+        homeMvvm.observeCategoryLiveData().observe(viewLifecycleOwner) { categories ->
+            categoriesAdapter.setCategoryList(categories)
+        }
     }
 
     private fun onPopularItemClick() {
