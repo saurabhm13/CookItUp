@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.foodapp.data.Category
 import com.example.foodapp.data.MealsByCategory
 import com.example.foodapp.databinding.CategoryMealsItemListBinding
 import com.example.foodapp.ui.Activity.CategoryMealsActivity
@@ -11,6 +12,7 @@ import com.example.foodapp.ui.Activity.CategoryMealsActivity
 class CategoryMealsAdapter: RecyclerView.Adapter<CategoryMealsAdapter.CategoryMealsViewModel>() {
 
     private var mealsList = ArrayList<MealsByCategory>()
+    var onItemClick: ((MealsByCategory) -> Unit)? = null
 
     fun setMealsList(mealsList: List<MealsByCategory>){
         this.mealsList = mealsList as ArrayList<MealsByCategory>
@@ -33,6 +35,10 @@ class CategoryMealsAdapter: RecyclerView.Adapter<CategoryMealsAdapter.CategoryMe
             .into(holder.binding.imgMeal)
 
         holder.binding.tvMealName.text = mealsList[position].strMeal
+
+        holder.itemView.setOnClickListener {
+            onItemClick!!.invoke(mealsList[position])
+        }
     }
 
 

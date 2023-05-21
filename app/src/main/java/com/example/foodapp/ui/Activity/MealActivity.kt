@@ -5,14 +5,16 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.foodapp.R
 import com.example.foodapp.data.Meal
 import com.example.foodapp.databinding.ActivityMealBinding
+import com.example.foodapp.db.MealDatabase
 import com.example.foodapp.viewmodel.MealDetailViewModel
-import java.util.Objects
+import com.example.foodapp.viewmodel.MealViewModelFactory
 
 class MealActivity : AppCompatActivity() {
 
@@ -30,7 +32,12 @@ class MealActivity : AppCompatActivity() {
         binding = ActivityMealBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        mealDetailViewModel = ViewModelProviders.of(this)[MealDetailViewModel::class.java]
+        val mealDatabase = MealDatabase.getInstance(this)
+        val viewModelFactory = MealViewModelFactory(mealDatabase)
+
+        mealDetailViewModel = ViewModelProvider(this, viewModelFactory)[MealDetailViewModel::class.java]
+
+//        mealDetailViewModel = ViewModelProviders.of(this)[MealDetailViewModel::class.java]
 
         getMealInfoFromIntent()
 
@@ -40,6 +47,16 @@ class MealActivity : AppCompatActivity() {
         observeMealDetailsLiveData()
 
         onYoutubeImageClick()
+        onFavoriteClick()
+    }
+
+    private fun onFavoriteClick() {
+        binding.btnSave.setOnClickListener {
+            mealToSave?.let { it1 ->
+                mealDetailViewModel.insertMeal(it1)
+                Toast.makeText(this, "Meal Saved", Toast.LENGTH_LONG).show()
+            }
+        }
     }
 
     private fun onYoutubeImageClick() {
@@ -49,17 +66,19 @@ class MealActivity : AppCompatActivity() {
         }
     }
 
+    private var mealToSave: Meal? = null
     private fun observeMealDetailsLiveData() {
         mealDetailViewModel.observeMealDetailLiveData().observe(this, object : Observer<Meal>{
             @SuppressLint("SetTextI18n")
             override fun onChanged(t: Meal?) {
                 val meal = t!!
+                mealToSave = meal
 
                 binding.tvCategoryInfo.text = "Category: ${meal.strCategory}"
                 binding.tvAreaInfo.text = "Location: ${meal.strArea}"
                 binding.tvInstructions.text = meal.strInstructions
 
-                mealLink = meal.strYoutube
+                mealLink = meal.strYoutube.toString()
             }
         })
     }

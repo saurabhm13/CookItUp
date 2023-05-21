@@ -1,5 +1,6 @@
 package com.example.foodapp.ui.Activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
@@ -30,6 +31,18 @@ class CategoryMealsActivity : AppCompatActivity() {
             binding.tvCategoryCount.text = mealsList.size.toString()
             categoryMealsAdapter.setMealsList(mealsList)
         })
+
+        onCategoryMealItemClick()
+    }
+
+    private fun onCategoryMealItemClick() {
+        categoryMealsAdapter.onItemClick = {
+            val intoMealDetail = Intent(this, MealActivity::class.java)
+            intoMealDetail.putExtra("Meal_Id", it.idMeal)
+            intoMealDetail.putExtra("Meal_Name", it.strMeal)
+            intoMealDetail.putExtra("Meal_Thumb", it.strMealThumb)
+            startActivity(intoMealDetail)
+        }
     }
 
     private fun prepareCategoryRecyclerView() {
