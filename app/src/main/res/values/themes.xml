@@ -4,6 +4,10 @@
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
         <item name="colorPrimary">@color/primary</item>
+
+        <!--App Status bar-->
+        <item name="android:statusBarColor" >#DFDEDE</item>
+        <item name="android:windowLightStatusBar" tools:ignore="NewApi">true</item>
     </style>
 
     <style name="Theme.FoodApp" parent="Base.Theme.FoodApp" />
@@ -14,11 +18,31 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="SecondaryText">
+        <item name="android:textColor">@color/black</item>
+        <item name="fontFamily">@font/bentham</item>
+    </style>
+
+    <style name="TertiaryText">
+        <item name="android:textColor">@color/g_black</item>
+        <item name="fontFamily">@font/bentham</item>
+        <item name="drawableTint">@color/g_black</item>
+    </style>
+
     <style name="Icons">
         <item name="tint">@color/black</item>
     </style>
 
     <style name="SecondaryCard">
         <item name="android:background">#FFFFFF</item>
+    </style>
+
+    <style name="AppBottomSheetDialogTheme"
+        parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/AppModalStyle</item>
+    </style>
+
+    <style name="AppModalStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/rounded_top_shape</item>
     </style>
 </resources>

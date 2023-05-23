@@ -18,6 +18,7 @@ import com.example.foodapp.databinding.FragmentHomeBinding
 import com.example.foodapp.ui.Activity.CategoryMealsActivity
 import com.example.foodapp.ui.Activity.MainActivity
 import com.example.foodapp.ui.Activity.MealActivity
+import com.example.foodapp.ui.Fragments.bottomsheet.MealBottomSheetFragment
 import com.example.foodapp.viewmodel.HomeViewModel
 
 class HomeFragment : Fragment() {
@@ -32,7 +33,6 @@ class HomeFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         viewModel = (activity as MainActivity).viewModel
-        popularItemAdapter = MostPopularAdapter()
     }
 
     override fun onCreateView(
@@ -55,12 +55,20 @@ class HomeFragment : Fragment() {
         observePopularItems()
         preparePopularItemRecyclerView()
         onPopularItemClick()
+        onPopularItemLongClick()
 
         viewModel.getCategories()
         observeCategoryItems()
         prepareCategoryItemRecyclerView()
         onCategoryItemClick()
 
+    }
+
+    private fun onPopularItemLongClick() {
+        popularItemAdapter.onLongItemClick = { meal ->
+            val mealBottomSheetFragment = MealBottomSheetFragment.newInstance(meal.idMeal)
+            mealBottomSheetFragment.show(childFragmentManager, "Meal Info")
+        }
     }
 
     private fun onCategoryItemClick() {
@@ -96,6 +104,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun preparePopularItemRecyclerView() {
+        popularItemAdapter = MostPopularAdapter()
         binding.recViewMealsPopular.apply {
             layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
             adapter = popularItemAdapter

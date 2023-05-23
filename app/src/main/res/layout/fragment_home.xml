@@ -26,9 +26,9 @@
                     android:id="@+id/header"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
+                    android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginEnd="15dp"
+                    android:layout_marginEnd="10dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
@@ -119,25 +119,29 @@
                     app:layout_constraintStart_toStartOf="@id/rec_view_meals_popular"
                     app:layout_constraintTop_toBottomOf="@id/rec_view_meals_popular" />
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/category_card"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recViewCategories"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:elevation="2dp"
-                    app:cardCornerRadius="10dp"
-                    app:cardPreventCornerOverlap="false"
-                    app:cardUseCompatPadding="true"
+                    android:padding="5dp"
+                    android:scrollbars="none"
                     app:layout_constraintEnd_toEndOf="@+id/rec_view_meals_popular"
                     app:layout_constraintStart_toStartOf="@+id/tv_category"
-                    app:layout_constraintTop_toBottomOf="@id/tv_category">
+                    app:layout_constraintTop_toBottomOf="@id/tv_category" />
+<!--                <androidx.cardview.widget.CardView-->
+<!--                    android:id="@+id/category_card"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:elevation="2dp"-->
+<!--                    app:cardCornerRadius="10dp"-->
+<!--                    app:cardPreventCornerOverlap="false"-->
+<!--                    app:cardUseCompatPadding="true"-->
+<!--                    app:layout_constraintEnd_toEndOf="@+id/rec_view_meals_popular"-->
+<!--                    app:layout_constraintStart_toStartOf="@+id/tv_category"-->
+<!--                    app:layout_constraintTop_toBottomOf="@id/tv_category">-->
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/recViewCategories"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:padding="5dp"
-                        android:scrollbars="none" />
-                </androidx.cardview.widget.CardView>
+<!--                    -->
+<!--                </androidx.cardview.widget.CardView>-->
             </androidx.constraintlayout.widget.ConstraintLayout>
         </RelativeLayout>
     </androidx.core.widget.NestedScrollView>

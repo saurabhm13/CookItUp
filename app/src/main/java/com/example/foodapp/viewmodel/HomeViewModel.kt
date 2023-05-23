@@ -25,15 +25,26 @@ class HomeViewModel(
     private var randomMealLiveData = MutableLiveData<Meal>()
     private var popularItemLiveData = MutableLiveData<List<MealsByCategory>>()
     private var categoriesLiveData = MutableLiveData<List<Category>>()
+    private var bottomSheetMealLiveData = MutableLiveData<Meal>()
     private var favoriteMealLiveData = mealDatabase.mealDao().getAllMeals()
 
+    // To save random meal from configuration changes
+    private var saveStateRandomMeal: Meal? = null
+
     fun getRandomMeal(){
+
+        // If configuration changes happens we execute this part else call RetrofitInstance
+        saveStateRandomMeal?.let { randomMeal ->
+            randomMealLiveData.postValue(randomMeal)
+            return
+        }
 
         RetrofitInstance.api.getRandomMeal().enqueue(object : Callback<MealList> {
             override fun onResponse(call: Call<MealList>, response: Response<MealList>) {
                 if (response.body() != null){
                     val randomMeal: Meal = response.body()!!.meals[0]
                     randomMealLiveData.value = randomMeal
+                    saveStateRandomMeal = randomMeal
                 }else {
                     return
                 }
@@ -73,6 +84,22 @@ class HomeViewModel(
         })
     }
 
+    fun getMealById(id: String) {
+        RetrofitInstance.api.getMealDetails(id).enqueue(object : Callback<MealList>{
+            override fun onResponse(call: Call<MealList>, response: Response<MealList>) {
+                val meal = response.body()?.meals?.first()
+                meal?.let { meal ->
+                    bottomSheetMealLiveData.postValue(meal)
+                }
+            }
+
+            override fun onFailure(call: Call<MealList>, t: Throwable) {
+                Log.d("HomeViewModel", t.message.toString())
+            }
+
+        })
+    }
+
     fun delete(meal: Meal){
         viewModelScope.launch {
             mealDatabase.mealDao().delete(meal)
@@ -99,6 +126,10 @@ class HomeViewModel(
 
     fun observeFavoriteMealsLiveData(): LiveData<List<Meal>>{
         return favoriteMealLiveData
+    }
+
+    fun observeBottomSheetLiveData(): LiveData<Meal>{
+        return bottomSheetMealLiveData
     }
 
 }
