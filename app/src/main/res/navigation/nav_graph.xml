@@ -9,7 +9,11 @@
         android:id="@+id/homeFragment"
         android:name="com.example.foodapp.ui.Fragments.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_searchResultFragment"
+            app:destination="@id/searchResultFragment" />
+    </fragment>
     <fragment
         android:id="@+id/favouriteFragment"
         android:name="com.example.foodapp.ui.Fragments.FavouriteFragment"
@@ -20,4 +24,9 @@
         android:name="com.example.foodapp.ui.Fragments.CategoriesFragment"
         android:label="fragment_categories"
         tools:layout="@layout/fragment_categories" />
+    <fragment
+        android:id="@+id/searchResultFragment"
+        android:name="com.example.foodapp.ui.Fragments.SearchResultFragment"
+        android:label="fragment_search_result"
+        tools:layout="@layout/fragment_search_result" />
 </navigation>

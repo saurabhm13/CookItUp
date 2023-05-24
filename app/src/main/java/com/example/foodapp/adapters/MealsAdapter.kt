@@ -7,12 +7,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.foodapp.data.Meal
-import com.example.foodapp.data.MealsByCategory
 import com.example.foodapp.databinding.CategoryMealsItemListBinding
-import com.example.foodapp.databinding.FragmentFavouriteBinding
-import com.example.foodapp.databinding.PopularMealItemListBinding
 
-class FavoriteMealsAdapter: RecyclerView.Adapter<FavoriteMealsAdapter.FavoriteMealViewHolder>() {
+class MealsAdapter: RecyclerView.Adapter<MealsAdapter.FavoriteMealViewHolder>() {
 
     var onItemClick: ((Meal) -> Unit)? = null
 
