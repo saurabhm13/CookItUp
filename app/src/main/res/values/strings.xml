@@ -9,4 +9,7 @@
     <string name="over_popular_items">Over popular items</string>
     <string name="category">Category</string>
     <string name="area">Area :</string>
+    <string name="instructions">Instructions</string>
+    <string name="fast_food">Fast food</string>
+    <string name="no_favorites">No Favorites...</string>
 </resources>

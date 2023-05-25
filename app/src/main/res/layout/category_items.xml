@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:padding="5dp"
-        android:text="Fast food"
+        android:text="@string/fast_food"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="@+id/img_category"
         app:layout_constraintStart_toStartOf="@id/img_category"
