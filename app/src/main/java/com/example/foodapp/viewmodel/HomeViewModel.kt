@@ -34,7 +34,7 @@ class HomeViewModel(
 
     fun getRandomMeal(){
 
-        // If configuration changes happens we execute this part else call RetrofitInstance
+        // If configuration changes happens(i.e screen rotation), we execute this part else we call RetrofitInstance
         saveStateRandomMeal?.let { randomMeal ->
             randomMealLiveData.postValue(randomMeal)
             return

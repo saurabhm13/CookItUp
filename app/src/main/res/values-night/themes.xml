@@ -33,4 +33,15 @@
         <item name="android:background">#000000</item>
     </style>
 
+    <style name="CornerImage" parent="ShapeAppearance.Material3.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeBottomLeft">8%</item>
+        <item name="cornerSizeBottomRight">8%</item>
+    </style>
+
+    <style name="RoundedImageShape" parent="ShapeAppearance.Material3.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
 </resources>

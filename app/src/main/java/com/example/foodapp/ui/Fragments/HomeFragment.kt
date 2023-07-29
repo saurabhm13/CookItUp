@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.foodapp.R
+import com.example.foodapp.TestActivity
 import com.example.foodapp.adapters.CategoryAdapter
 import com.example.foodapp.adapters.CategoryMealsAdapter
 import com.example.foodapp.adapters.MostPopularAdapter
@@ -65,6 +66,11 @@ class HomeFragment : Fragment() {
         onCategoryItemClick()
 
         onSearchIconClick()
+
+        binding.bthTest.setOnClickListener {
+            val intent = Intent(context, TestActivity::class.java)
+            startActivity(intent)
+        }
 
     }
 

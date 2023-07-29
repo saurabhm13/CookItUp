@@ -5,7 +5,9 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
@@ -46,47 +48,61 @@ class MealActivity : AppCompatActivity() {
         mealDetailViewModel.getMealDetail(mealId)
         observeMealDetailsLiveData()
 
-        onYoutubeImageClick()
-        onFavoriteClick()
+//        onYoutubeImageClick()
+//        onFavoriteClick()
     }
 
-    private fun onFavoriteClick() {
-        binding.btnSave.setOnClickListener {
-            mealToSave?.let { it1 ->
-                mealDetailViewModel.insertMeal(it1)
-                Toast.makeText(this, "Meal Saved", Toast.LENGTH_LONG).show()
-            }
-        }
-    }
+//    private fun onFavoriteClick() {
+//        binding.btnSave.setOnClickListener {
+//            mealToSave?.let { it1 ->
+//                mealDetailViewModel.insertMeal(it1)
+//                Toast.makeText(this, "Meal Saved", Toast.LENGTH_LONG).show()
+//            }
+//        }
+//    }
 
-    private fun onYoutubeImageClick() {
-        binding.imgYoutube.setOnClickListener {
-            val inToYoutube = Intent(Intent.ACTION_VIEW, Uri.parse(mealLink))
-            startActivity(inToYoutube)
-        }
-    }
+//    private fun onYoutubeImageClick() {
+//        binding.imgYoutube.setOnClickListener {
+//            val inToYoutube = Intent(Intent.ACTION_VIEW, Uri.parse(mealLink))
+//            startActivity(inToYoutube)
+//        }
+//    }
 
     private var mealToSave: Meal? = null
     private fun observeMealDetailsLiveData() {
-        mealDetailViewModel.observeMealDetailLiveData().observe(this, object : Observer<Meal>{
-            @SuppressLint("SetTextI18n")
-            override fun onChanged(t: Meal?) {
-                val meal = t!!
-                mealToSave = meal
+        mealDetailViewModel.observeMealDetailLiveData().observe(this
+        ) { t ->
+            val meal = t!!
+            mealToSave = meal
 
-                binding.tvCategoryInfo.text = "Category: ${meal.strCategory}"
-                binding.tvAreaInfo.text = "Location: ${meal.strArea}"
-                binding.tvInstructions.text = meal.strInstructions
+//            binding.tvCategoryInfo.text = "Category: ${meal.strCategory}"
+//            binding.tvAreaInfo.text = "Location: ${meal.strArea}"
+            binding.instruction.text = meal.strInstructions
 
-                mealLink = meal.strYoutube.toString()
-            }
-        })
+            mealLink = meal.strYoutube.toString()
+
+//            setContentVisibility()
+        }
     }
+
+//    private fun setContentVisibility() {
+//        binding.loadingCategory.visibility = View.GONE
+//        binding.loadingArea.visibility = View.GONE
+//        binding.loadingInstruction.visibility = View.GONE
+//        binding.loadingContent1.visibility = View.GONE
+//        binding.loadingContent2.visibility = View.GONE
+//        binding.loadingContent3.visibility = View.GONE
+//
+//        binding.tvCategoryInfo.visibility = View.VISIBLE
+//        binding.tvInstructions.visibility = View.VISIBLE
+//        binding.tvContent.visibility = View.VISIBLE
+//        binding.tvAreaInfo.visibility = View.VISIBLE
+//    }
 
     private fun setInfoInViews() {
         Glide.with(application)
             .load(mealThumb)
-            .into(binding.imgMealDetail)
+            .into(binding.imageView)
 
         binding.collapsingToolbar.title = mealName
         binding.collapsingToolbar.setCollapsedTitleTextColor(resources.getColor(R.color.white))

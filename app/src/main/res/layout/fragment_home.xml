@@ -102,7 +102,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rec_view_meals_popular"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="130dp"
                     android:padding="5dp"
                     tools:listitem="@layout/popular_meal_item_list"
                     app:layout_constraintEnd_toEndOf="@+id/random_meal"
@@ -146,5 +146,13 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </RelativeLayout>
     </androidx.core.widget.NestedScrollView>
+
+    <Button
+        android:id="@+id/bth_test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="test"/>
+
+<!--    Loading-->
 
 </FrameLayout>

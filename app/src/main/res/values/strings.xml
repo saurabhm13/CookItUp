@@ -12,4 +12,6 @@
     <string name="instructions">Instructions</string>
     <string name="fast_food">Fast food</string>
     <string name="no_favorites">No Favorites...</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="instruction">Instruction</string>
 </resources>
