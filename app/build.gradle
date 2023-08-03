@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace 'com.example.foodapp'
+    namespace 'com.example.cookitup'
     compileSdk 33
 
     defaultConfig {

@@ -94,7 +94,7 @@
                     android:layout_height="wrap_content"
                     style="@style/PrimaryText"
                     android:layout_marginTop="18dp"
-                    android:text="@string/over_popular_items"
+                    android:text="@string/popular_items"
                     android:textSize="20sp"
                     app:layout_constraintStart_toStartOf="@id/tv_would_like_to_eat"
                     app:layout_constraintTop_toBottomOf="@id/random_meal" />
@@ -146,13 +146,6 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </RelativeLayout>
     </androidx.core.widget.NestedScrollView>
-
-    <Button
-        android:id="@+id/bth_test"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="test"/>
-
 <!--    Loading-->
 
 </FrameLayout>

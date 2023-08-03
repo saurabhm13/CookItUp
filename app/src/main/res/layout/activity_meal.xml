@@ -2,9 +2,9 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/details_rot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/details_rot"
     tools:context=".ui.Activity.MealActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -18,28 +18,77 @@
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/collapsing_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="500dp"
-            android:background="@drawable/meal_img_bg"
+            android:layout_height="400dp"
             android:fitsSystemWindows="true"
+            app:collapsedTitleTextAppearance="@style/PrimaryText"
+            app:collapsedTitleGravity="center_horizontal"
+            app:expandedTitleMarginBottom="40dp"
+            app:expandedTitleMarginStart="30dp"
+            app:expandedTitleTextAppearance="@style/PrimaryText"
+            app:expandedTitleTextColor="@color/white"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:maxLines="2"
             app:title="Meal name"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+            app:titleCollapseMode="fade">
 
             <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/image_view"
+                android:id="@+id/meal_image"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:shapeAppearanceOverlay="@style/CornerImage"
+                android:backgroundTint="@color/black"
+                android:foreground="@drawable/meal_img_forg"
                 android:scaleType="centerCrop"
                 android:src="@drawable/image"
-                android:backgroundTint="@color/black"
-                app:layout_collapseMode="parallax" />
+                app:layout_collapseMode="parallax"
+                app:shapeAppearanceOverlay="@style/CornerImage" />
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?actionBarSize"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
                 app:layout_collapseMode="pin"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 app:titleTextColor="@color/white" />
+
+
+            <!-- Favorite icon - Shown on the image when expanded -->
+            <ImageView
+                android:id="@+id/favorite_mealDetail"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="top|end"
+                android:layout_margin="16dp"
+                android:background="@drawable/icon_bg"
+                android:contentDescription="@string/favorite"
+                android:padding="8dp"
+                android:src="@drawable/ic_favorite"
+                android:visibility="visible"
+                app:layout_collapseMode="pin"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/white" />
+
+            <!-- Back icon - Shown on the image when expanded -->
+            <ImageView
+                android:id="@+id/back_mealDetail"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="top|start"
+                android:layout_margin="16dp"
+                android:background="@drawable/icon_bg"
+                android:contentDescription="@string/back"
+                android:padding="8dp"
+                android:src="@drawable/ic_back"
+                android:visibility="visible"
+                app:layout_collapseMode="pin"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/white" />
+
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
@@ -60,44 +109,44 @@
 
             <TextView
                 android:id="@+id/txt_ingredient"
+                style="@style/PrimaryText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/ingredients"
-                android:layout_marginTop="20dp"
                 android:layout_marginStart="20dp"
-                style="@style/PrimaryText"
+                android:layout_marginTop="20dp"
+                android:text="@string/ingredients"
                 android:textSize="19sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_ingredient"
                 android:layout_width="match_parent"
                 android:layout_height="170dp"
                 android:layout_marginTop="10dp"
-                tools:listitem="@layout/ingredient_item_list"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/txt_ingredient"/>
+                app:layout_constraintTop_toBottomOf="@id/txt_ingredient"
+                tools:listitem="@layout/ingredient_item_list" />
 
             <TextView
                 android:id="@+id/txt_instruction"
+                style="@style/PrimaryText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/instruction"
-                style="@style/PrimaryText"
-                android:textSize="19sp"
-                android:layout_marginTop="20dp"
                 android:layout_marginStart="20dp"
-                app:layout_constraintTop_toBottomOf="@id/rv_ingredient"
-                app:layout_constraintStart_toStartOf="parent"/>
+                android:layout_marginTop="20dp"
+                android:text="@string/instruction"
+                android:textSize="19sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rv_ingredient" />
 
             <TextView
                 android:id="@+id/instruction"
                 style="@style/SecondaryText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:text="@string/instruction"
                 android:textSize="17sp"

@@ -3,20 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:padding="20dp"
     app:cardCornerRadius="15dp"
     app:cardUseCompatPadding="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
+        android:layout_width="90dp"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp">
+        android:layout_margin="5dp">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/ingredientImage"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:src="@drawable/image"
             app:shapeAppearanceOverlay="@style/RoundedImageShape"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -25,24 +23,27 @@
 
         <TextView
             android:id="@+id/ingredientName"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             style="@style/PrimaryText"
-            android:textSize="17sp"
-            android:layout_marginTop="10dp"
-            android:text="@string/ingredients"
+            android:textSize="15sp"
+            android:layout_marginTop="8dp"
+            android:text="sdf rg ssd bsfhgb nfsldkjf nfsjdkl"
+            android:textAlignment="center"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/ingredientImage"/>
 
         <TextView
             android:id="@+id/ingredientMeasurement"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             style="@style/SecondaryText"
-            android:textSize="15sp"
-            android:layout_marginTop="6dp"
-            android:text="@string/ingredients"
+            android:textSize="13sp"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="4dp"
+            android:text="skjbf s vkfsbvjfsv skjf bsfjk"
+            android:textAlignment="center"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/ingredientName"/>
